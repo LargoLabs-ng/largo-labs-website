@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/* ── Largo Labs brand tokens ─────────────────────────────────────────────── */
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Ink — deep navy foundation */
+  --color-ink-950: #060b16;
+  --color-ink-900: #0a1323;
+  --color-ink-800: #111d33;
+  --color-ink-700: #1d2b45;
+  --color-ink-600: #33415c;
+  --color-ink-400: #8a96ad;
+  --color-ink-300: #b4bdcd;
+
+  /* Neutrals */
+  --color-paper: #f5f6f8;
+  --color-mist: #eceef2;
+  --color-line: #dde1e8;
+  --color-muted: #4a5468;
+  --color-subtle: #5f6b80; /* small text on light backgrounds (≥ 4.9:1) */
+
+  /* Signal — restrained teal accent */
+  --color-signal-300: #6fe6d8;
+  --color-signal-400: #2fd0bf;
+  --color-signal-500: #13a99b;
+  --color-signal-700: #0a6f67; /* text-safe on white (≥ 5.9:1) */
+
+  --radius-card: 1rem;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+}
+
+/* Anchor targets clear the sticky header */
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+::selection {
+  background: var(--color-signal-300);
+  color: var(--color-ink-950);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal-500);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Fine engineering grid used behind dark sections */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgb(10 19 35 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(10 19 35 / 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Restrained entrance motion */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise 0.7s var(--ease-out-soft) both;
+}
+
+/* Legal / long-form prose */
+.prose-legal h2 {
+  margin-top: 2.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-900);
+}
+.prose-legal h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-ink-900);
+}
+.prose-legal p,
+.prose-legal li {
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+.prose-legal p + p {
+  margin-top: 0.9rem;
+}
+.prose-legal ul {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.prose-legal li + li {
+  margin-top: 0.4rem;
+}
+.prose-legal a {
+  color: var(--color-signal-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-legal strong {
+  color: var(--color-ink-900);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
